@@ -1,7 +1,11 @@
 .App {
   text-align: center;
 }
-
+.center{
+  background-image: url(/src/images/center.jpg);
+  background-position: center;
+  color:whitesmoke
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
