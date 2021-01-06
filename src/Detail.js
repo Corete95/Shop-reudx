@@ -1,15 +1,41 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import styled from "styled-components";
+import "./Detail.scss";
+
+const BOX = styled.div`
+  padding: 20px;
+`;
+const TITLE = styled.h4`
+  font-size: 25px;
+`;
 
 function Detail(props) {
+  const [alert, setAlert] = useState(true);
   const { id } = useParams();
-  const shoesId = props.shoes.find(function (shoes) {
-    return shoes.id == id;
-  });
+  const shoesId = props.shoes.find((shoes) => shoes.id == id);
   const history = useHistory();
+
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setAlert(false);
+    }, 2000);
+    return () => {
+      clearTimeout(timer);
+    };
+  }, []);
 
   return (
     <div className="container">
+      <BOX>
+        <TITLE className="red">상세페이지</TITLE>
+      </BOX>
+      {alert === true ? (
+        <div className="myAlert">
+          <p>재고가 얼마 남지 않았습니다.</p>
+        </div>
+      ) : null}
+
       <div className="row">
         <div className="col-md-6">
           <img

@@ -9,11 +9,11 @@ const Header = () => {
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse id="basic-navbar-nav">
         <Nav className="ml-auto">
-          <Nav.Link>
-            <Link to="/">메인</Link>
+          <Nav.Link as={Link} to="/">
+            메인
           </Nav.Link>
-          <Nav.Link>
-            <Link to="/detail">상세페이지</Link>
+          <Nav.Link as={Link} to="/detail">
+            상세페이지
           </Nav.Link>
           <NavDropdown title="Dropdown" id="basic-nav-dropdown">
             <NavDropdown.Item href="#action/3.1">Action</NavDropdown.Item>
