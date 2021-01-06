@@ -5,6 +5,7 @@ import data from "./data.js";
 import Detail from "./Detail";
 import Header from "./Header";
 import ShoesList from "./ShoesList";
+import axios from "axios";
 import "./App.css";
 
 function App() {
@@ -30,6 +31,21 @@ function App() {
               return <ShoesList shoes={shoes} idx={idx} key={idx} />;
             })}
           </div>
+          <button
+            className="btn btn-primary"
+            onClick={() => {
+              axios
+                .get("https://codingapple1.github.io/shop/data2.json")
+                .then((res) => {
+                  setShoes([...shoes, ...res.data]);
+                })
+                .catch(() => {
+                  console("에러에러");
+                });
+            }}
+          >
+            더보기
+          </button>
         </div>
       </Route>
 
