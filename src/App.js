@@ -9,8 +9,8 @@ import axios from "axios";
 import "./App.css";
 
 function App() {
-  let [shoes, setShoes] = useState(data);
-
+  const [shoes, setShoes] = useState(data);
+  const [stock, setStock] = useState([10, 11, 12]);
   return (
     <div className="App">
       <Header />
@@ -50,7 +50,7 @@ function App() {
       </Route>
 
       <Route exact path="/detail/:id">
-        <Detail shoes={shoes} />
+        <Detail shoes={shoes} stock={stock} setStock={setStock} />
       </Route>
     </div>
   );
