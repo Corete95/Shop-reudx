@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
 import styled from "styled-components";
 import "./Detail.scss";
+import { stockContext } from "./App";
 
 const BOX = styled.div`
   padding: 20px;
@@ -15,6 +16,7 @@ function Detail(props) {
   const { id } = useParams();
   const shoesId = props.shoes.find((shoes) => shoes.id == id);
   const history = useHistory();
+  const stock = useContext(stockContext);
 
   useEffect(() => {
     const timer = setTimeout(() => {
@@ -51,7 +53,7 @@ function Detail(props) {
           <h4 className="pt-5">{shoesId.title}</h4>
           <p>{shoesId.content}</p>
           <p>{shoesId.price}</p>
-          <Info stock={props.stock}></Info>
+          <p>재고: {stock[0]}</p>
           <button
             className="btn btn-danger"
             onClick={() => {
@@ -72,10 +74,6 @@ function Detail(props) {
       </div>
     </div>
   );
-}
-
-function Info(props) {
-  return <p>재고:{props.stock[0]}</p>;
 }
 
 export default Detail;

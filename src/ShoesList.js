@@ -1,6 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { stockContext } from "./App";
 
 const ShoesList = (props) => {
+  const stock = useContext(stockContext);
+
   return (
     <div className="col-md-4">
       <img
@@ -13,8 +16,13 @@ const ShoesList = (props) => {
       <p>
         {props.shoes.content} & {props.shoes.price}
       </p>
+      <Stock></Stock>
     </div>
   );
 };
 
+function Stock() {
+  const stock = useContext(stockContext);
+  return <p>재고: {stock[0]}</p>;
+}
 export default ShoesList;

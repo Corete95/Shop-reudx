@@ -8,9 +8,12 @@ import ShoesList from "./ShoesList";
 import axios from "axios";
 import "./App.css";
 
+export const stockContext = React.createContext();
+
 function App() {
   const [shoes, setShoes] = useState(data);
   const [stock, setStock] = useState([10, 11, 12]);
+
   return (
     <div className="App">
       <Header />
@@ -26,11 +29,13 @@ function App() {
           </p>
         </Jumbotron>
         <div className="container">
-          <div className="row">
-            {shoes.map((shoes, idx) => {
-              return <ShoesList shoes={shoes} idx={idx} key={idx} />;
-            })}
-          </div>
+          <stockContext.Provider value={stock}>
+            <div className="row">
+              {shoes.map((shoes, idx) => {
+                return <ShoesList shoes={shoes} idx={idx} key={idx} />;
+              })}
+            </div>
+          </stockContext.Provider>
           <button
             className="btn btn-primary"
             onClick={() => {
@@ -50,7 +55,9 @@ function App() {
       </Route>
 
       <Route exact path="/detail/:id">
-        <Detail shoes={shoes} stock={stock} setStock={setStock} />
+        <stockContext.Provider value={stock}>
+          <Detail shoes={shoes} stock={stock} setStock={setStock} />
+        </stockContext.Provider>
       </Route>
     </div>
   );
