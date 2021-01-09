@@ -12,3 +12,11 @@ margin:auto;
     margin-bottom: 0px;
 }
 }
+
+.wow-enter{
+    opacity: 0;
+}
+.wow-enter-active{
+    opacity: 1;
+    transition: all 500ms;
+}

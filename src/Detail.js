@@ -1,8 +1,10 @@
 import React, { useState, useEffect, useContext } from "react";
 import { useHistory, useParams } from "react-router-dom";
+import { Nav } from "react-bootstrap";
+import { stockContext } from "./App";
+import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import "./Detail.scss";
-import { stockContext } from "./App";
 
 const BOX = styled.div`
   padding: 20px;
@@ -13,6 +15,8 @@ const TITLE = styled.h4`
 
 function Detail(props) {
   const [alert, setAlert] = useState(true);
+  const [tab, setTab] = useState(0);
+  const [tabSwitch, setTabSwitch] = useState(false);
   const { id } = useParams();
   const shoesId = props.shoes.find((shoes) => shoes.id == id);
   const history = useHistory();
@@ -72,8 +76,50 @@ function Detail(props) {
           </button>
         </div>
       </div>
+      <Nav className="mt-5" variant="tabs" defaultActiveKey="link-0">
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-0"
+            onClick={() => {
+              setTabSwitch(false);
+              setTab(0);
+            }}
+          >
+            Active
+          </Nav.Link>
+        </Nav.Item>
+        <Nav.Item>
+          <Nav.Link
+            eventKey="link-1"
+            onClick={() => {
+              setTabSwitch(false);
+              setTab(1);
+            }}
+          >
+            Option 2
+          </Nav.Link>
+        </Nav.Item>
+      </Nav>
+      <CSSTransition in={tabSwitch} classNames="wow" timeout={500}>
+        <TabContent tab={tab} setTabSwitch={setTabSwitch}></TabContent>
+      </CSSTransition>
     </div>
   );
+}
+function TabContent(props) {
+  useEffect(() => {
+    props.setTabSwitch(true);
+  });
+
+  if (props.tab === 0) {
+    return <div>0번째 내용</div>;
+  }
+  if (props.tab === 1) {
+    return <div>1번째 내용</div>;
+  }
+  if (props.tab === 2) {
+    return <div>2번째 내용</div>;
+  }
 }
 
 export default Detail;
