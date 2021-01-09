@@ -4,6 +4,7 @@ import { Link, Route, Switch } from "react-router-dom";
 import data from "./data.js";
 import Detail from "./Detail";
 import Header from "./Header";
+import Cart from "./Cart";
 import ShoesList from "./ShoesList";
 import axios from "axios";
 import "./App.css";
@@ -58,6 +59,10 @@ function App() {
         <stockContext.Provider value={stock}>
           <Detail shoes={shoes} stock={stock} setStock={setStock} />
         </stockContext.Provider>
+      </Route>
+
+      <Route path="/Cart">
+        <Cart></Cart>
       </Route>
     </div>
   );
