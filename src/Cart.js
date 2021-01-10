@@ -21,12 +21,31 @@ const Cart = (props) => {
                 <td>{state.id}</td>
                 <td>{state.name}</td>
                 <td>{state.quan}</td>
-                <td></td>
+                <td>
+                  <button
+                    onClick={() => {
+                      props.dispatch({ type: "quanPlus" });
+                    }}
+                  >
+                    +
+                  </button>
+                  <button
+                    onClick={() => {
+                      props.dispatch({ type: "quanMinus" });
+                    }}
+                  >
+                    -
+                  </button>
+                </td>
               </tr>
             );
           })}
         </tbody>
       </Table>
+      <div className="myAlert">
+        <p>지금 구매하시면 신규할인 20%</p>
+        <button>닫기</button>
+      </div>
     </div>
   );
 };
