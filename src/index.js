@@ -4,12 +4,14 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import "./index.css";
 import { Provider } from "react-redux";
-import { createStore } from "redux";
+import { combineReducers, createStore } from "redux";
 
 const cartList = [
   { id: 0, name: "멋진 신발", quan: 2 },
   { id: 1, name: "이쁜 신발", quan: 5 },
 ];
+
+const alertValue = true;
 
 function reducer(state = cartList, action) {
   if (action.type === "quanPlus") {
@@ -25,7 +27,15 @@ function reducer(state = cartList, action) {
   }
 }
 
-const store = createStore(reducer);
+function reducer2(state = alertValue, action) {
+  if (action.type === "alertClose") {
+    state = false;
+    return state;
+  } else {
+    return state;
+  }
+}
+const store = createStore(combineReducers({ reducer, reducer2 }));
 
 ReactDOM.render(
   <React.StrictMode>
