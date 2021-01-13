@@ -24,7 +24,9 @@ const Cart = (props) => {
                 <td>
                   <button
                     onClick={() => {
-                      props.dispatch({ type: "quanPlus" });
+                      props.dispatch({
+                        type: "quanPlus",
+                      });
                     }}
                   >
                     +

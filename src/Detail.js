@@ -5,6 +5,7 @@ import { stockContext } from "./App";
 import { CSSTransition } from "react-transition-group";
 import styled from "styled-components";
 import "./Detail.scss";
+import { connect } from "react-redux";
 
 const BOX = styled.div`
   padding: 20px;
@@ -62,6 +63,11 @@ function Detail(props) {
             className="btn btn-danger"
             onClick={() => {
               props.setStock([props.stock[0] - 1]);
+              props.dispatch({
+                type: "addItem",
+                payload: { id: 2, name: "새로운상품", quan: 1 },
+              });
+              history.push("/Cart");
             }}
           >
             주문하기
@@ -122,4 +128,10 @@ function TabContent(props) {
   }
 }
 
-export default Detail;
+function redux(state) {
+  return {
+    state: state.reducer,
+    alert: state.reducer2,
+  };
+}
+export default connect(redux)(Detail);

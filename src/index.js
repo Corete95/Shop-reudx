@@ -14,7 +14,11 @@ const cartList = [
 const alertValue = true;
 
 function reducer(state = cartList, action) {
-  if (action.type === "quanPlus") {
+  if (action.type === "addItem") {
+    let copy = [...state];
+    copy.push(action.payload);
+    return copy;
+  } else if (action.type === "quanPlus") {
     let copy = [...state];
     copy[0].quan++;
     return copy;
