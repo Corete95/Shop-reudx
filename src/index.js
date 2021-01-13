@@ -15,16 +15,25 @@ const alertValue = true;
 
 function reducer(state = cartList, action) {
   if (action.type === "addItem") {
-    let copy = [...state];
-    copy.push(action.payload);
-    return copy;
+    let found = state.findIndex((id) => {
+      return id.id === action.payload.id;
+    });
+    if (found >= 0) {
+      let copy = [...state];
+      copy[found].quan++;
+      return copy;
+    } else {
+      let copy = [...state];
+      copy.push(action.payload);
+      return copy;
+    }
   } else if (action.type === "quanPlus") {
     let copy = [...state];
-    copy[0].quan++;
+    copy[action.payload].quan++;
     return copy;
   } else if (action.type === "quanMinus") {
     let copy = [...state];
-    copy[0].quan--;
+    copy[action.payload].quan--;
     return copy;
   } else {
     return state;

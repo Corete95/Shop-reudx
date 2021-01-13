@@ -26,6 +26,7 @@ const Cart = (props) => {
                     onClick={() => {
                       props.dispatch({
                         type: "quanPlus",
+                        payload: state.id,
                       });
                     }}
                   >
@@ -33,7 +34,7 @@ const Cart = (props) => {
                   </button>
                   <button
                     onClick={() => {
-                      props.dispatch({ type: "quanMinus" });
+                      props.dispatch({ type: "quanMinus", payload: state.id });
                     }}
                   >
                     -

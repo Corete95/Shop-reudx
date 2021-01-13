@@ -65,7 +65,7 @@ function Detail(props) {
               props.setStock([props.stock[0] - 1]);
               props.dispatch({
                 type: "addItem",
-                payload: { id: 2, name: "새로운상품", quan: 1 },
+                payload: { id: shoesId.id, name: shoesId.title, quan: 1 },
               });
               history.push("/Cart");
             }}

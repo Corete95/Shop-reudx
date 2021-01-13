@@ -9,6 +9,9 @@
 .my-alert2{
   background-color: aqua;
 }
+.col-md-4{
+  cursor: pointer;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;
